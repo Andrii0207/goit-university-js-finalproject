@@ -32,11 +32,10 @@ function onOpenModal(e) {
     }
 
     const instance = basicLightbox.create(`<div class="modal"><img src="${originalSizeImg}" alt="${altImg}"/></div>`, {
-        closable: false,
+        onShow: instance => { window.addEventListener("keydown", onCloseModal) },
+        onClose: instance => { window.removeEventListener("keydown", onCloseModal) }
     })
-    instance.show(() => console.log("Lightbox now visible"))
-
-    window.addEventListener("keydown", onCloseModal)
+    instance.show()
 
     function onCloseModal(e) {
         if (e.code === "Escape") {

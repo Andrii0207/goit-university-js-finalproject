@@ -14,24 +14,13 @@ function createGallery(galleryItems) {
 
 galleryEl.insertAdjacentHTML("beforeend", createGallery(galleryItems))
 
-galleryEl.addEventListener("click", onOpenModal)
+new SimpleLightbox(".gallery a", {
+    showCounter: false,
+    captionDelay: 250,
+    captionPosition: "bottom",
+    close: false,
+    overlayOpacity: 1,
+    captionsData: `alt`
+})
 
-function onOpenModal(e) {
-    e.preventDefault()
-
-    const isImage = e.target.classList.contains("gallery__image");
-
-    if (!isImage) {
-        return console.log("It's not a image")
-    }
-
-    new SimpleLightbox(".gallery a", {
-        showCounter: false,
-        captionDelay: 250,
-        captionPosition: "bottom",
-        close: false,
-        overlayOpacity: 1,
-        captionsData: `alt`
-    })
-}
 
